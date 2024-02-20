@@ -18,5 +18,9 @@ def resume_2():
 def resume_template():
     return render_template("resume_template.html")
 
+@app.route('/contact')
+def contact():
+    return render_template("contact.html")
+
 if(__name__ == "__main__"):
     app.run()
