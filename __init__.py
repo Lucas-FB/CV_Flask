@@ -1,4 +1,9 @@
 from flask import Flask,render_template
+from flask import Flask, render_template_string, render_template, jsonify
+from flask import Flask, render_template, request, redirect
+from flask import json
+from urllib.request import urlopen
+import sqlite3
 
 app = Flask(__name__) #creating flask app name
 
@@ -21,6 +26,7 @@ def resume_template():
 @app.route('/contact')
 def contact():
     return render_template("contact.html")
+
 
 if(__name__ == "__main__"):
     app.run()
