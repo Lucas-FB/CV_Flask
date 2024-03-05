@@ -40,6 +40,27 @@ def ReadBDD():
     
     # Rendre le template HTML et transmettre les données
     return render_template('read_data.html', data=data)
+
+@app.route('/submit_contact_form', methods=['POST'])
+def submit_contact_form():
+    # Récupérer les données du formulaire depuis la requête POST
+    nom = request.form['nom']
+    email = request.form['email']
+    message = request.form['message']
     
+    # Connexion à la base de données
+    conn = sqlite3.connect('chemin_vers_ton_fichier_database.db')
+    cursor = conn.cursor()
+    
+    # Insérer les données dans la table contact
+    cursor.execute('INSERT INTO contact (name, email, message) VALUES (?, ?, ?)', (nom, email, message))
+    
+    # Commit les changements et ferme la connexion
+    conn.commit()
+    conn.close()
+    
+    # Redirection vers une page de confirmation ou autre
+    return redirect('/confirmation')
+
 if(__name__ == "__main__"):
     app.run()
