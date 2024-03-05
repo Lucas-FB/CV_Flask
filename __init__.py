@@ -49,7 +49,7 @@ def submit_contact_form():
     message = request.form['message']
     
     # Connexion à la base de données
-    conn = sqlite3.connect('chemin_vers_ton_fichier_database.db')
+    conn = sqlite3.connect('./database.db')
     cursor = conn.cursor()
     
     # Insérer les données dans la table contact
